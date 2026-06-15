@@ -20,11 +20,11 @@ class SplunkHostedModels:
     async def run_anomaly_detection(
         self,
         metrics_data: dict,
-        model_name: str = "aria_anomaly_detector"
+        model_name: str = "foundation-sec-1.1-8b-instruct"
     ) -> dict:
         """
-        Run Splunk MLTK anomaly detection model.
-        Returns anomaly scores per metric timeseries.
+        Run Splunk Foundation AI Security Model for anomaly classification.
+        Falls back to local Z-score detection when Splunk is unavailable.
         """
         try:
             result = await self.mcp.run_hosted_model(
@@ -44,11 +44,12 @@ class SplunkHostedModels:
         self,
         timeseries: list,
         horizon_minutes: int = 5,
-        model_name: str = "aria_forecaster"
+        model_name: str = "cisco-deep-time-series"
     ) -> dict:
         """
-        Run time-series forecast to predict future metric values.
-        Used by Propagation Agent for blast radius ETA.
+        Run Cisco Deep Time Series Model for metric forecasting.
+        Used by Propagation Agent to estimate blast radius ETAs.
+        Falls back to linear extrapolation when Splunk is unavailable.
         """
         try:
             result = await self.mcp.run_hosted_model(
@@ -67,11 +68,11 @@ class SplunkHostedModels:
     async def run_nlp_summary(
         self,
         incident_data: dict,
-        model_name: str = "aria_nlp_summarizer"
+        model_name: str = "foundation-sec-1.1-8b-instruct"
     ) -> str:
         """
-        Use Splunk hosted NLP model to generate incident summary.
-        Falls back to template if model unavailable.
+        Use Foundation AI Security Model to generate incident summary narrative.
+        Falls back to template when Splunk is unavailable.
         """
         try:
             result = await self.mcp.run_hosted_model(
@@ -83,7 +84,6 @@ class SplunkHostedModels:
             logger.warning(f"NLP model unavailable ({e}), using template")
             return self._template_summary(incident_data)
 
-    # ── Local fallbacks (used in demo / when Splunk unavailable) ────────────
 
     def _local_anomaly_fallback(self, metrics_data: dict) -> dict:
         """
