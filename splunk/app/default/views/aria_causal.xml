@@ -1,0 +1,94 @@
+<dashboard>
+  <label>ARIA — Causal Analysis</label>
+
+  <row>
+    <panel>
+      <single>
+        <title>Root Causes Identified (30d)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=rca_complete | stats dc(root_cause) as count</query>
+          <earliest>-30d</earliest><latest>now</latest>
+        </search>
+        <option name="underLabel">Unique causal roots</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Avg Confidence Score</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=rca_complete | stats avg(confidence_score) as c | eval pct=round(c*100,1) | fields pct</query>
+          <earliest>-30d</earliest><latest>now</latest>
+        </search>
+        <option name="unit">%</option>
+        <option name="underLabel">DoWhy causal estimation</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Avg Causal Chain Depth</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=rca_complete | stats avg(causal_chain_length) as d | eval d=round(d,1) | fields d</query>
+          <earliest>-30d</earliest><latest>now</latest>
+        </search>
+        <option name="underLabel">Hops from root to incident</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Counterfactuals Generated (30d)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=counterfactual_generated | stats count</query>
+          <earliest>-30d</earliest><latest>now</latest>
+        </search>
+        <option name="underLabel">"What if" scenarios</option>
+      </single>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <table>
+        <title>Root Cause Analysis Results</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=rca_complete
+| eval conf=round(confidence_score*100,1)."%"
+| table _time incident_id root_cause conf causal_chain counterfactual_scenario
+| rename _time as Time, incident_id as Incident,
+         root_cause as "Root Cause", conf as Confidence,
+         causal_chain as "Causal Chain",
+         counterfactual_scenario as "Counterfactual: What if?"
+| sort -Time | head 20</query>
+          <earliest>-7d</earliest><latest>now</latest>
+        </search>
+      </table>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <chart>
+        <title>Most Common Root Causes (30d)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=rca_complete | stats count by root_cause | sort -count | head 10</query>
+          <earliest>-30d</earliest><latest>now</latest>
+        </search>
+        <option name="charting.chart">bar</option>
+        <option name="charting.axisTitleX.text">Incidents</option>
+        <option name="charting.seriesColors">["0xf97316"]</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Confidence Score Distribution</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=rca_complete
+| eval bucket=case(confidence_score>=0.9,"90-100%",confidence_score>=0.8,"80-90%",confidence_score>=0.7,"70-80%",confidence_score>=0.6,"60-70%",1=1,"Below 60%")
+| stats count by bucket</query>
+          <earliest>-30d</earliest><latest>now</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.seriesColors">["0x22c55e","0x84cc16","0xeab308","0xf97316","0xef4444"]</option>
+      </chart>
+    </panel>
+  </row>
+</dashboard>

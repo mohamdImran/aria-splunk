@@ -1,0 +1,18 @@
+# ARIA App — default metadata
+# Sets app-level permissions so all users can see the dashboards
+
+[]
+access = read : [ * ], write : [ admin, power ]
+export = system
+
+[views]
+access = read : [ * ], write : [ admin, power ]
+export = system
+
+[savedsearches]
+access = read : [ * ], write : [ admin ]
+export = system
+
+[alert_actions]
+access = read : [ * ], write : [ admin ]
+export = system

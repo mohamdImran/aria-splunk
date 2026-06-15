@@ -1,0 +1,13 @@
+host,depends_on,dependency_type,criticality
+api-gateway,db-primary,database,critical
+api-gateway,user-service,service,high
+payment-service,api-gateway,service,critical
+payment-service,db-primary,database,critical
+checkout-service,payment-service,service,critical
+checkout-service,api-gateway,service,high
+checkout-service,db-primary,database,high
+user-service,db-primary,database,high
+notification-svc,checkout-service,service,medium
+notification-svc,user-service,service,low
+analytics-service,db-primary,database,low
+analytics-service,api-gateway,service,low

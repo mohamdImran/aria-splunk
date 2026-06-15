@@ -1,0 +1,79 @@
+<form>
+  <label>ARIA — Incident History</label>
+
+  <fieldset submitButton="true" autoRun="true">
+    <input type="time" token="time_range" searchWhenChanged="false">
+      <label>Time Range</label>
+      <default><earliest>-7d</earliest><latest>now</latest></default>
+    </input>
+    <input type="dropdown" token="sev_filter" searchWhenChanged="false">
+      <label>Severity</label>
+      <default>*</default>
+      <choice value="*">All</choice>
+      <choice value="P1">P1 — Critical</choice>
+      <choice value="P2">P2 — High</choice>
+      <choice value="P3">P3 — Medium</choice>
+      <choice value="P4">P4 — Low</choice>
+    </input>
+  </fieldset>
+
+  <row>
+    <panel>
+      <table>
+        <title>Incident Log</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=incident_created
+($sev_filter="*" OR severity="$sev_filter$")
+| eval age=round((now()-_time)/60,1), conf=round(confidence_score*100,0)."%"
+| table _time incident_id severity status root_cause conf age affected_services
+| rename _time as Time, incident_id as "Incident ID", severity as Sev,
+         status as Status, root_cause as "Root Cause", conf as Confidence,
+         age as "Age (min)", affected_services as "Affected Services"
+| sort -Time</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+        <option name="count">25</option>
+        <format type="color" field="Sev">
+          <colorPalette type="map">{"P1":"#ef4444","P2":"#f97316","P3":"#eab308","P4":"#6b7280"}</colorPalette>
+        </format>
+        <format type="color" field="Status">
+          <colorPalette type="map">{"investigating":"#eab308","identified":"#3b82f6","remediating":"#f97316","resolved":"#22c55e"}</colorPalette>
+        </format>
+      </table>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <chart>
+        <title>Incidents Over Time</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=incident_created
+($sev_filter="*" OR severity="$sev_filter$")
+| timechart span=1d count by severity</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.seriesColors">["0xef4444","0xf97316","0xeab308","0x6b7280"]</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>MTTD / MTTR Trend (minutes)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=incident_resolved
+| timechart span=1d avg(mttd_seconds) as MTTD avg(mttr_seconds) as MTTR
+| eval MTTD=round(MTTD/60,1), MTTR=round(MTTR/60,1)</query>
+          <earliest>$time_range.earliest$</earliest>
+          <latest>$time_range.latest$</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.axisTitleY.text">Minutes</option>
+        <option name="charting.seriesColors">["0x3b82f6","0xf97316"]</option>
+      </chart>
+    </panel>
+  </row>
+</form>

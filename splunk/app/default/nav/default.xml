@@ -1,0 +1,8 @@
+<nav search_view="search" color="#f97316">
+  <view name="aria_overview" default="true" label="Overview"/>
+  <view name="aria_incidents" label="Incidents"/>
+  <view name="aria_causal" label="Causal Analysis"/>
+  <view name="aria_agents" label="Agent Activity"/>
+  <view name="aria_health" label="Service Health"/>
+  <view name="search" label="Search"/>
+</nav>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="820" viewBox="0 0 1200 820" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="1200" height="820" fill="#0a0f1a"/>
+
+  <!-- Grid lines (subtle) -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a2535" stroke-width="0.5"/>
+    </pattern>
+    <!-- Glow filter -->
+    <filter id="glow-orange">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-blue">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Arrow markers -->
+    <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#a855f7"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="820" fill="url(#grid)"/>
+
+  <!-- ═══ TITLE ═══ -->
+  <text x="600" y="42" text-anchor="middle" fill="#f97316" font-size="22" font-weight="700" filter="url(#glow-orange)">ARIA — Agentic Resilience Intelligence Architect</text>
+  <text x="600" y="62" text-anchor="middle" fill="#64748b" font-size="12">Enterprise Multi-Agent Incident Intelligence Platform · Splunk MCP · Causal AI · LangGraph</text>
+
+  <!-- ═══ LAYER 1: FRONTEND ═══ -->
+  <rect x="30" y="90" width="1140" height="130" rx="12" fill="#0f1929" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="50" y="112" fill="#3b82f6" font-size="11" font-weight="600" letter-spacing="2">REACT + TYPESCRIPT FRONTEND</text>
+
+  <!-- War Room -->
+  <rect x="50" y="122" width="180" height="82" rx="8" fill="#0d2240" stroke="#1e4080" stroke-width="1"/>
+  <text x="140" y="142" text-anchor="middle" fill="#60a5fa" font-size="10" font-weight="600">War Room Dashboard</text>
+  <text x="140" y="158" text-anchor="middle" fill="#475569" font-size="9">Incident Command Center</text>
+  <rect x="60" y="165" width="50" height="14" rx="3" fill="#1e3a5f"/>
+  <text x="85" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Agent Panel</text>
+  <rect x="118" y="165" width="50" height="14" rx="3" fill="#1e3a5f"/>
+  <text x="143" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Agent Chat</text>
+  <rect x="176" y="165" width="44" height="14" rx="3" fill="#1e3a5f"/>
+  <text x="198" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Brief</text>
+  <text x="140" y="198" text-anchor="middle" fill="#334155" font-size="8">Zustand · React Query · WebSocket</text>
+
+  <!-- Causal Graph -->
+  <rect x="250" y="122" width="180" height="82" rx="8" fill="#1a0d2e" stroke="#4c1d95" stroke-width="1"/>
+  <text x="340" y="142" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="600">D3 Causal Graph</text>
+  <text x="340" y="158" text-anchor="middle" fill="#475569" font-size="9">Force-directed · Zoom/Pan · Live</text>
+  <rect x="260" y="165" width="70" height="14" rx="3" fill="#2d1b4e"/>
+  <text x="295" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Root Cause Node</text>
+  <rect x="340" y="165" width="80" height="14" rx="3" fill="#2d1b4e"/>
+  <text x="380" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Causal Edge Strength</text>
+  <text x="340" y="198" text-anchor="middle" fill="#334155" font-size="8">d3 v7 · ResizeObserver · RAF animation</text>
+
+  <!-- Blast Radius -->
+  <rect x="450" y="122" width="180" height="82" rx="8" fill="#1f0d0d" stroke="#7f1d1d" stroke-width="1"/>
+  <text x="540" y="142" text-anchor="middle" fill="#fca5a5" font-size="10" font-weight="600">Blast Radius Heatmap</text>
+  <text x="540" y="158" text-anchor="middle" fill="#475569" font-size="9">Impact Probability · ETA · Priority</text>
+  <rect x="460" y="165" width="75" height="14" rx="3" fill="#450a0a"/>
+  <text x="497" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Service Impact Bars</text>
+  <rect x="545" y="165" width="75" height="14" rx="3" fill="#450a0a"/>
+  <text x="582" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Prediction Timeline</text>
+  <text x="540" y="198" text-anchor="middle" fill="#334155" font-size="8">Framer Motion · BlastRadiusItem[]</text>
+
+  <!-- Approval Gate -->
+  <rect x="650" y="122" width="180" height="82" rx="8" fill="#1c1200" stroke="#78350f" stroke-width="1"/>
+  <text x="740" y="142" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">Approval Gate</text>
+  <text x="740" y="158" text-anchor="middle" fill="#475569" font-size="9">Human-in-the-Loop · Risk Rating</text>
+  <rect x="660" y="165" width="80" height="14" rx="3" fill="#3d2000"/>
+  <text x="700" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Step-by-Step Review</text>
+  <rect x="750" y="165" width="70" height="14" rx="3" fill="#3d2000"/>
+  <text x="785" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Auto-approve 30s</text>
+  <text x="740" y="198" text-anchor="middle" fill="#334155" font-size="8">WebSocket sendApproval · Countdown</text>
+
+  <!-- Runbook Viewer -->
+  <rect x="850" y="122" width="180" height="82" rx="8" fill="#001a0a" stroke="#14532d" stroke-width="1"/>
+  <text x="940" y="142" text-anchor="middle" fill="#86efac" font-size="10" font-weight="600">Runbook Viewer</text>
+  <text x="940" y="158" text-anchor="middle" fill="#475569" font-size="9">Execution Log · Step Status</text>
+  <rect x="860" y="165" width="80" height="14" rx="3" fill="#002d12"/>
+  <text x="900" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Risk Level Badges</text>
+  <rect x="950" y="165" width="70" height="14" rx="3" fill="#002d12"/>
+  <text x="985" y="175" text-anchor="middle" fill="#94a3b8" font-size="8">Rollback Actions</text>
+  <text x="940" y="198" text-anchor="middle" fill="#334155" font-size="8">react-markdown · Framer Motion</text>
+
+  <!-- Incident Brief -->
+  <rect x="1050" y="122" width="110" height="82" rx="8" fill="#0d1f2d" stroke="#0e4f6e" stroke-width="1"/>
+  <text x="1105" y="142" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="600">Incident Brief</text>
+  <text x="1105" y="160" text-anchor="middle" fill="#475569" font-size="9">Markdown Rendered</text>
+  <text x="1105" y="175" text-anchor="middle" fill="#475569" font-size="9">Commander Synthesis</text>
+  <text x="1105" y="198" text-anchor="middle" fill="#334155" font-size="8">react-markdown · remark-gfm</text>
+
+  <!-- ═══ LAYER 2: FASTAPI BACKEND ═══ -->
+  <rect x="30" y="250" width="1140" height="150" rx="12" fill="#0f1a1a" stroke="#134e4a" stroke-width="1.5"/>
+  <text x="50" y="272" fill="#22c55e" font-size="11" font-weight="600" letter-spacing="2">FASTAPI BACKEND  ·  LANGGRAPH ORCHESTRATOR  ·  REDIS STATE</text>
+
+  <!-- Orchestrator box -->
+  <rect x="50" y="282" width="220" height="102" rx="8" fill="#0a2020" stroke="#134e4a" stroke-width="1"/>
+  <text x="160" y="300" text-anchor="middle" fill="#34d399" font-size="10" font-weight="600">LangGraph Orchestrator</text>
+  <text x="160" y="315" text-anchor="middle" fill="#475569" font-size="9">Supervisor Pattern · Async Pipeline</text>
+  <rect x="60" y="322" width="190" height="13" rx="3" fill="#0d3030"/>
+  <text x="155" y="331" text-anchor="middle" fill="#6ee7b7" font-size="8">Sentinel → Forensic → Propagation → Remediation</text>
+  <rect x="60" y="340" width="90" height="13" rx="3" fill="#0d3030"/>
+  <text x="105" y="349" text-anchor="middle" fill="#6ee7b7" font-size="8">Commander Synthesis</text>
+  <rect x="160" y="340" width="90" height="13" rx="3" fill="#0d3030"/>
+  <text x="205" y="349" text-anchor="middle" fill="#6ee7b7" font-size="8">Approval Gate</text>
+  <rect x="60" y="358" width="192" height="13" rx="3" fill="#0d3030"/>
+  <text x="156" y="367" text-anchor="middle" fill="#6ee7b7" font-size="8">WebSocket Broadcast · Redis State Cache</text>
+  <text x="160" y="380" text-anchor="middle" fill="#334155" font-size="8">FastAPI BackgroundTask · asyncio native</text>
+
+  <!-- 4 Agent boxes -->
+  <!-- Sentinel -->
+  <rect x="290" y="282" width="170" height="102" rx="8" fill="#1a0a0a" stroke="#7f1d1d" stroke-width="1"/>
+  <text x="375" y="300" text-anchor="middle" fill="#f87171" font-size="11">🔴</text>
+  <text x="375" y="316" text-anchor="middle" fill="#fca5a5" font-size="10" font-weight="600">Sentinel</text>
+  <text x="375" y="330" text-anchor="middle" fill="#475569" font-size="9">Anomaly Detection</text>
+  <text x="375" y="345" text-anchor="middle" fill="#374151" font-size="8">splunk_search</text>
+  <text x="375" y="358" text-anchor="middle" fill="#374151" font-size="8">splunk_get_alerts</text>
+  <text x="375" y="371" text-anchor="middle" fill="#374151" font-size="8">splunk_get_metrics</text>
+  <text x="375" y="380" text-anchor="middle" fill="#6b7280" font-size="8">Severity P1–P4</text>
+
+  <!-- Forensic -->
+  <rect x="475" y="282" width="170" height="102" rx="8" fill="#0a0a1a" stroke="#1e3a8a" stroke-width="1"/>
+  <text x="560" y="300" text-anchor="middle" fill="#818cf8" font-size="11">🔬</text>
+  <text x="560" y="316" text-anchor="middle" fill="#a5b4fc" font-size="10" font-weight="600">Forensic</text>
+  <text x="560" y="330" text-anchor="middle" fill="#475569" font-size="9">Causal Root Cause</text>
+  <text x="560" y="345" text-anchor="middle" fill="#374151" font-size="8">PC Algorithm (causal-learn)</text>
+  <text x="560" y="358" text-anchor="middle" fill="#374151" font-size="8">DoWhy Estimation</text>
+  <text x="560" y="371" text-anchor="middle" fill="#374151" font-size="8">Counterfactuals</text>
+  <text x="560" y="380" text-anchor="middle" fill="#6b7280" font-size="8">94% Confidence</text>
+
+  <!-- Propagation -->
+  <rect x="660" y="282" width="170" height="102" rx="8" fill="#1a1200" stroke="#78350f" stroke-width="1"/>
+  <text x="745" y="300" text-anchor="middle" fill="#fbbf24" font-size="11">📡</text>
+  <text x="745" y="316" text-anchor="middle" fill="#fde68a" font-size="10" font-weight="600">Propagation</text>
+  <text x="745" y="330" text-anchor="middle" fill="#475569" font-size="9">Blast Radius Prediction</text>
+  <text x="745" y="345" text-anchor="middle" fill="#374151" font-size="8">BFS Causal Graph</text>
+  <text x="745" y="358" text-anchor="middle" fill="#374151" font-size="8">Impact Probability</text>
+  <text x="745" y="371" text-anchor="middle" fill="#374151" font-size="8">ETA Minutes</text>
+  <text x="745" y="380" text-anchor="middle" fill="#6b7280" font-size="8">3–5 min Early Warning</text>
+
+  <!-- Remediation -->
+  <rect x="845" y="282" width="170" height="102" rx="8" fill="#001a0a" stroke="#14532d" stroke-width="1"/>
+  <text x="930" y="300" text-anchor="middle" fill="#4ade80" font-size="11">🛠️</text>
+  <text x="930" y="316" text-anchor="middle" fill="#86efac" font-size="10" font-weight="600">Remediation</text>
+  <text x="930" y="330" text-anchor="middle" fill="#475569" font-size="9">Auto-Remediation</text>
+  <text x="930" y="345" text-anchor="middle" fill="#374151" font-size="8">Runbook Generation</text>
+  <text x="930" y="358" text-anchor="middle" fill="#374151" font-size="8">splunk_execute_action</text>
+  <text x="930" y="371" text-anchor="middle" fill="#374151" font-size="8">splunk_create_alert</text>
+  <text x="930" y="380" text-anchor="middle" fill="#6b7280" font-size="8">Human Approval Gate</text>
+
+  <!-- Causal Engine -->
+  <rect x="1030" y="282" width="130" height="102" rx="8" fill="#140a2e" stroke="#4c1d95" stroke-width="1"/>
+  <text x="1095" y="300" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="600">Causal AI Engine</text>
+  <text x="1095" y="316" text-anchor="middle" fill="#475569" font-size="9">DoWhy + causal-learn</text>
+  <text x="1095" y="332" text-anchor="middle" fill="#374151" font-size="8">PC Algorithm</text>
+  <text x="1095" y="345" text-anchor="middle" fill="#374151" font-size="8">CausalModel</text>
+  <text x="1095" y="358" text-anchor="middle" fill="#374151" font-size="8">Counterfactual</text>
+  <text x="1095" y="371" text-anchor="middle" fill="#374151" font-size="8">BlastRadius BFS</text>
+  <text x="1095" y="384" text-anchor="middle" fill="#6b7280" font-size="8">numpy · pandas</text>
+
+  <!-- ═══ LAYER 3: MCP SERVER ═══ -->
+  <rect x="30" y="430" width="1140" height="110" rx="12" fill="#0f0f1f" stroke="#312e81" stroke-width="1.5"/>
+  <text x="50" y="452" fill="#818cf8" font-size="11" font-weight="600" letter-spacing="2">SPLUNK MCP SERVER  ·  Model Context Protocol  ·  JSON-RPC 2.0  ·  Bearer Token Auth</text>
+
+  <!-- MCP Tools -->
+  <rect x="50" y="462" width="155" height="62" rx="6" fill="#1e1b4b" stroke="#312e81" stroke-width="1"/>
+  <text x="127" y="478" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">splunk_search</text>
+  <text x="127" y="491" text-anchor="middle" fill="#64748b" font-size="8">Execute SPL queries</text>
+  <text x="127" y="503" text-anchor="middle" fill="#4b5563" font-size="8">index=main service=* | timechart...</text>
+  <text x="127" y="518" text-anchor="middle" fill="#374151" font-size="8">earliest/latest · output_mode=json</text>
+
+  <rect x="215" y="462" width="155" height="62" rx="6" fill="#1e1b4b" stroke="#312e81" stroke-width="1"/>
+  <text x="292" y="478" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">splunk_get_metrics</text>
+  <text x="292" y="491" text-anchor="middle" fill="#64748b" font-size="8">Time-series metric data</text>
+  <text x="292" y="503" text-anchor="middle" fill="#4b5563" font-size="8">response_time · error_rate</text>
+  <text x="292" y="518" text-anchor="middle" fill="#374151" font-size="8">cpu_percent · memory_percent</text>
+
+  <rect x="380" y="462" width="155" height="62" rx="6" fill="#1e1b4b" stroke="#312e81" stroke-width="1"/>
+  <text x="457" y="478" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">splunk_run_model</text>
+  <text x="457" y="491" text-anchor="middle" fill="#64748b" font-size="8">Hosted ML Inference</text>
+  <text x="457" y="503" text-anchor="middle" fill="#4b5563" font-size="8">Foundation AI Security Model</text>
+  <text x="457" y="518" text-anchor="middle" fill="#374151" font-size="8">Cisco Deep Time Series Model</text>
+
+  <rect x="545" y="462" width="155" height="62" rx="6" fill="#1e1b4b" stroke="#312e81" stroke-width="1"/>
+  <text x="622" y="478" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">splunk_execute_action</text>
+  <text x="622" y="491" text-anchor="middle" fill="#64748b" font-size="8">Response Actions</text>
+  <text x="622" y="503" text-anchor="middle" fill="#4b5563" font-size="8">restart · scale · throttle</text>
+  <text x="622" y="518" text-anchor="middle" fill="#374151" font-size="8">Approved runbook steps</text>
+
+  <rect x="710" y="462" width="155" height="62" rx="6" fill="#1e1b4b" stroke="#312e81" stroke-width="1"/>
+  <text x="787" y="478" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">splunk_create_alert</text>
+  <text x="787" y="491" text-anchor="middle" fill="#64748b" font-size="8">Alert Management</text>
+  <text x="787" y="503" text-anchor="middle" fill="#4b5563" font-size="8">Post-incident monitoring</text>
+  <text x="787" y="518" text-anchor="middle" fill="#374151" font-size="8">SPL · cron_schedule · threshold</text>
+
+  <rect x="875" y="462" width="155" height="62" rx="6" fill="#1e1b4b" stroke="#312e81" stroke-width="1"/>
+  <text x="952" y="478" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">splunk_get_alerts</text>
+  <text x="952" y="491" text-anchor="middle" fill="#64748b" font-size="8">Active Alert Monitoring</text>
+  <text x="952" y="503" text-anchor="middle" fill="#4b5563" font-size="8">Severity · fired_at</text>
+  <text x="952" y="518" text-anchor="middle" fill="#374151" font-size="8">Trigger incident pipeline</text>
+
+  <rect x="1040" y="462" width="125" height="62" rx="6" fill="#1e1b4b" stroke="#312e81" stroke-width="1"/>
+  <text x="1102" y="478" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="600">splunk_update</text>
+  <text x="1102" y="491" text-anchor="middle" fill="#64748b" font-size="8">_dashboard</text>
+  <text x="1102" y="503" text-anchor="middle" fill="#4b5563" font-size="8">Write to Splunk panels</text>
+  <text x="1102" y="518" text-anchor="middle" fill="#374151" font-size="8">Live ARIA War Room</text>
+
+  <!-- ═══ LAYER 4: SPLUNK ENTERPRISE ═══ -->
+  <rect x="30" y="570" width="1140" height="120" rx="12" fill="#0f1409" stroke="#365314" stroke-width="1.5"/>
+  <text x="50" y="592" fill="#84cc16" font-size="11" font-weight="600" letter-spacing="2">SPLUNK ENTERPRISE  ·  localhost:8089  ·  REST API  ·  Token Auth (audience: mcp)</text>
+
+  <rect x="50" y="602" width="210" height="72" rx="8" fill="#1a2e09" stroke="#365314" stroke-width="1"/>
+  <text x="155" y="620" text-anchor="middle" fill="#a3e635" font-size="10" font-weight="600">Indexes &amp; Data</text>
+  <text x="155" y="635" text-anchor="middle" fill="#4b5563" font-size="8">index=main · sourcetype=app_metrics</text>
+  <text x="155" y="648" text-anchor="middle" fill="#4b5563" font-size="8">sourcetype=db_metrics · aria_events</text>
+  <text x="155" y="661" text-anchor="middle" fill="#374151" font-size="8">service_deps lookup · HEC ingest</text>
+
+  <rect x="275" y="602" width="210" height="72" rx="8" fill="#1a2e09" stroke="#365314" stroke-width="1"/>
+  <text x="380" y="620" text-anchor="middle" fill="#a3e635" font-size="10" font-weight="600">MLTK &amp; Hosted Models</text>
+  <text x="380" y="635" text-anchor="middle" fill="#4b5563" font-size="8">Foundation AI Security Model</text>
+  <text x="380" y="648" text-anchor="middle" fill="#4b5563" font-size="8">Cisco Deep Time Series (DTMS)</text>
+  <text x="380" y="661" text-anchor="middle" fill="#374151" font-size="8">anomaly_detection_model · ARIMA</text>
+
+  <rect x="500" y="602" width="210" height="72" rx="8" fill="#1a2e09" stroke="#365314" stroke-width="1"/>
+  <text x="605" y="620" text-anchor="middle" fill="#a3e635" font-size="10" font-weight="600">Saved Searches &amp; Alerts</text>
+  <text x="605" y="635" text-anchor="middle" fill="#4b5563" font-size="8">ARIA High Error Rate (*/5 min)</text>
+  <text x="605" y="648" text-anchor="middle" fill="#4b5563" font-size="8">DB Connection Pool (*/2 min)</text>
+  <text x="605" y="661" text-anchor="middle" fill="#374151" font-size="8">action.aria_trigger → POST /api/incidents</text>
+
+  <rect x="725" y="602" width="210" height="72" rx="8" fill="#1a2e09" stroke="#365314" stroke-width="1"/>
+  <text x="830" y="620" text-anchor="middle" fill="#a3e635" font-size="10" font-weight="600">ARIA Splunk App</text>
+  <text x="830" y="635" text-anchor="middle" fill="#4b5563" font-size="8">app.conf · savedsearches.conf</text>
+  <text x="830" y="648" text-anchor="middle" fill="#4b5563" font-size="8">alert_actions.conf · aria_trigger.py</text>
+  <text x="830" y="661" text-anchor="middle" fill="#374151" font-size="8">Dashboards · Lookups (service_deps)</text>
+
+  <rect x="950" y="602" width="210" height="72" rx="8" fill="#1a2e09" stroke="#365314" stroke-width="1"/>
+  <text x="1055" y="620" text-anchor="middle" fill="#a3e635" font-size="10" font-weight="600">Dashboards</text>
+  <text x="1055" y="635" text-anchor="middle" fill="#4b5563" font-size="8">ARIA Operations Overview</text>
+  <text x="1055" y="648" text-anchor="middle" fill="#4b5563" font-size="8">Incident History · Causal Graph</text>
+  <text x="1055" y="661" text-anchor="middle" fill="#374151" font-size="8">Service Health · MTTD / MTTR</text>
+
+  <!-- ═══ DATA FLOW ARROWS ═══ -->
+  <!-- Frontend ↔ Backend: WebSocket + REST -->
+  <line x1="600" y1="222" x2="600" y2="250" stroke="#22c55e" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-green)"/>
+  <text x="612" y="240" fill="#22c55e" font-size="8">WebSocket + REST</text>
+
+  <!-- Backend → MCP -->
+  <line x1="600" y1="400" x2="600" y2="430" stroke="#818cf8" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-purple)"/>
+  <text x="612" y="420" fill="#818cf8" font-size="8">MCP tool calls (JSON-RPC)</text>
+
+  <!-- MCP → Splunk -->
+  <line x1="600" y1="540" x2="600" y2="570" stroke="#84cc16" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow-green)"/>
+  <text x="612" y="560" fill="#84cc16" font-size="8">Splunk REST API</text>
+
+  <!-- Splunk alert → Backend (autonomous) -->
+  <path d="M 610 670 Q 1185 670 1185 400 Q 1185 250 1185 175 Q 1185 90 600 90" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="8,4" marker-end="url(#arrow-orange)" opacity="0.6"/>
+  <text x="1150" y="440" fill="#f97316" font-size="8" opacity="0.8">Alert → aria_trigger.py</text>
+  <text x="1150" y="452" fill="#f97316" font-size="8" opacity="0.8">→ POST /api/incidents</text>
+  <text x="1150" y="464" fill="#f97316" font-size="8" opacity="0.8">(Autonomous trigger)</text>
+
+  <!-- ═══ LEGEND ═══ -->
+  <rect x="30" y="710" width="1140" height="90" rx="8" fill="#0a0f1a" stroke="#1e293b" stroke-width="1"/>
+  <text x="50" y="728" fill="#64748b" font-size="10" font-weight="600" letter-spacing="1">LEGEND &amp; KEY DIFFERENTIATORS</text>
+
+  <!-- Flow legend -->
+  <line x1="50" y1="745" x2="100" y2="745" stroke="#22c55e" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="108" y="749" fill="#64748b" font-size="9">WebSocket / REST (real-time)</text>
+  <line x1="260" y1="745" x2="310" y2="745" stroke="#818cf8" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="318" y="749" fill="#64748b" font-size="9">MCP tool calls (JSON-RPC 2.0)</text>
+  <line x1="490" y1="745" x2="540" y2="745" stroke="#84cc16" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="548" y="749" fill="#64748b" font-size="9">Splunk REST API</text>
+  <line x1="660" y1="745" x2="710" y2="745" stroke="#f97316" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="718" y="749" fill="#64748b" font-size="9">Autonomous alert trigger (Splunk → ARIA)</text>
+
+  <!-- Key differentiators -->
+  <text x="50" y="768" fill="#f97316" font-size="9" font-weight="600">★ TRUE CAUSAL INFERENCE</text>
+  <text x="195" y="768" fill="#64748b" font-size="9">DoWhy + PC Algorithm — not LLM guessing or correlation. Mathematical proof of root cause.</text>
+  <text x="50" y="783" fill="#f97316" font-size="9" font-weight="600">★ PREDICTIVE BLAST RADIUS</text>
+  <text x="210" y="783" fill="#64748b" font-size="9">BFS over causal graph predicts failures 3–5 minutes BEFORE they happen.</text>
+  <text x="50" y="798" fill="#f97316" font-size="9" font-weight="600">★ COUNTERFACTUAL ANALYSIS</text>
+  <text x="215" y="798" fill="#64748b" font-size="9">"Without DB exhaustion, checkout errors would be 0.2% not 14.7%" — proven mathematically.</text>
+  <text x="600" y="768" fill="#818cf8" font-size="9" font-weight="600">★ ALL SPLUNK OPS VIA MCP</text>
+  <text x="720" y="768" fill="#64748b" font-size="9">Every agent call routes through Splunk MCP Server. Zero direct REST calls from agents.</text>
+  <text x="600" y="783" fill="#84cc16" font-size="9" font-weight="600">★ HUMAN-IN-THE-LOOP</text>
+  <text x="700" y="783" fill="#64748b" font-size="9">Risk-classified approval gate. Low-risk auto-approves, High-risk requires operator sign-off.</text>
+  <text x="600" y="798" fill="#22c55e" font-size="9" font-weight="600">★ FULLY AUTONOMOUS</text>
+  <text x="690" y="798" fill="#64748b" font-size="9">Splunk alert fires → ARIA investigates → blast radius predicted → runbook approved → remediated.</text>
+
+  <!-- Track badge -->
+  <rect x="1050" y="715" width="120" height="22" rx="4" fill="#0c2340" stroke="#1e4080" stroke-width="1"/>
+  <text x="1110" y="729" text-anchor="middle" fill="#60a5fa" font-size="9" font-weight="600">Track: Observability</text>
+</svg>

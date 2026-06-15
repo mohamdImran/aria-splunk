@@ -1,0 +1,103 @@
+<form>
+  <label>ARIA — Service Health</label>
+
+  <fieldset submitButton="false" autoRun="true">
+    <input type="time" token="health_time" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default><earliest>-1h</earliest><latest>now</latest></default>
+    </input>
+    <input type="dropdown" token="svc" searchWhenChanged="true">
+      <label>Service</label>
+      <default>*</default>
+      <choice value="*">All Services</choice>
+      <choice value="api-gateway">api-gateway</choice>
+      <choice value="db-primary">db-primary</choice>
+      <choice value="payment-service">payment-service</choice>
+      <choice value="checkout-service">checkout-service</choice>
+      <choice value="user-service">user-service</choice>
+    </input>
+  </fieldset>
+
+  <row>
+    <panel>
+      <table>
+        <title>Current Service Status</title>
+        <search>
+          <query>index=main ($svc="*" OR service="$svc$")
+| stats latest(response_time) as rt latest(error_rate) as er latest(cpu_percent) as cpu by service
+| eval rt=round(rt,0), er=round(er,2), cpu=round(cpu,0)
+| eval Status=case(er>5 OR rt>1000,"Critical",er>2 OR rt>500,"Degraded",er>0.5 OR rt>200,"Warning",1=1,"Healthy")
+| table service Status rt er cpu
+| rename service as Service, rt as "Resp Time (ms)", er as "Error Rate (%)", cpu as "CPU %"
+| sort -"Error Rate (%)"</query>
+          <earliest>-5m</earliest><latest>now</latest>
+          <refresh>30s</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <format type="color" field="Status">
+          <colorPalette type="map">{"Critical":"#ef4444","Degraded":"#f97316","Warning":"#eab308","Healthy":"#22c55e"}</colorPalette>
+        </format>
+        <format type="color" field="Error Rate (%)">
+          <colorPalette type="minMidMax" minColor="#22c55e" midColor="#eab308" maxColor="#ef4444"/>
+          <colorPalette type="minMidMax" minValue="0" midValue="2" maxValue="10"/>
+        </format>
+      </table>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <chart>
+        <title>Response Time by Service</title>
+        <search>
+          <query>index=main ($svc="*" OR service="$svc$") | timechart span=1m avg(response_time) by service</query>
+          <earliest>$health_time.earliest$</earliest><latest>$health_time.latest$</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.axisTitleY.text">Response Time (ms)</option>
+        <option name="charting.chart.nullValueMode">connect</option>
+        <option name="charting.seriesColors">["0xef4444","0xf97316","0xeab308","0x22c55e","0x3b82f6"]</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Error Rate by Service</title>
+        <search>
+          <query>index=main ($svc="*" OR service="$svc$") | timechart span=1m avg(error_rate) by service</query>
+          <earliest>$health_time.earliest$</earliest><latest>$health_time.latest$</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.axisTitleY.text">Error Rate (%)</option>
+        <option name="charting.seriesColors">["0xef4444","0xf97316","0xeab308","0x22c55e","0x3b82f6"]</option>
+      </chart>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <chart>
+        <title>DB Connection Pool Utilization</title>
+        <search>
+          <query>index=main sourcetype=db_metrics | eval pool_pct=round((connection_pool_used/connection_pool_max)*100,1) | timechart span=1m avg(pool_pct) as "Pool %" max(pool_pct) as "Peak %"</query>
+          <earliest>$health_time.earliest$</earliest><latest>$health_time.latest$</latest>
+        </search>
+        <option name="charting.chart">area</option>
+        <option name="charting.axisTitleY.text">Utilization (%)</option>
+        <option name="charting.chart.fillOpacity">40</option>
+        <option name="charting.seriesColors">["0xf97316","0xef4444"]</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>CPU Utilization by Service</title>
+        <search>
+          <query>index=main ($svc="*" OR service="$svc$") | timechart span=5m avg(cpu_percent) by service</query>
+          <earliest>$health_time.earliest$</earliest><latest>$health_time.latest$</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.axisTitleY.text">CPU %</option>
+        <option name="charting.seriesColors">["0xef4444","0xf97316","0xeab308","0x22c55e","0x3b82f6"]</option>
+      </chart>
+    </panel>
+  </row>
+</form>

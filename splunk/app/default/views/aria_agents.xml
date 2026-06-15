@@ -1,0 +1,113 @@
+<dashboard>
+  <label>ARIA — Agent Activity</label>
+
+  <row>
+    <panel>
+      <single>
+        <title>Sentinel Activations (24h)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline agent_name=sentinel | stats count</query>
+          <earliest>-24h</earliest><latest>now</latest>
+        </search>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Forensic Agent (24h)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline agent_name=forensic | stats count</query>
+          <earliest>-24h</earliest><latest>now</latest>
+        </search>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Propagation Agent (24h)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline agent_name=propagation | stats count</query>
+          <earliest>-24h</earliest><latest>now</latest>
+        </search>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>Remediation Agent (24h)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline agent_name=remediation | stats count</query>
+          <earliest>-24h</earliest><latest>now</latest>
+        </search>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>MCP Tool Calls (24h)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=mcp_call | stats count</query>
+          <earliest>-24h</earliest><latest>now</latest>
+        </search>
+        <option name="underLabel">Via Splunk MCP Server</option>
+      </single>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <event>
+        <title>Live Agent Event Feed (Last 1h — auto-refreshes 30s)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline
+| table _time incident_id agent_name event_type message confidence_score
+| sort -_time</query>
+          <earliest>-1h</earliest><latest>now</latest>
+          <refresh>30s</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="count">50</option>
+        <option name="type">list</option>
+        <option name="list.wrap">true</option>
+        <option name="maxLines">5</option>
+      </event>
+    </panel>
+    <panel>
+      <chart>
+        <title>Agent Activations Over Time (7d)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline | timechart span=1d count by agent_name</query>
+          <earliest>-7d</earliest><latest>now</latest>
+        </search>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.seriesColors">["0xef4444","0x3b82f6","0xeab308","0x22c55e"]</option>
+      </chart>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <chart>
+        <title>MCP Tool Call Distribution (7d)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=mcp_call | stats count by tool_name | sort -count</query>
+          <earliest>-7d</earliest><latest>now</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.seriesColors">["0x818cf8","0xa78bfa","0xc4b5fd","0x7c3aed","0x4c1d95","0x6d28d9","0x5b21b6"]</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Pipeline Success Rate (30d)</title>
+        <search>
+          <query>index=main sourcetype=aria_pipeline event_type=incident_completed
+| eval success=if(status="resolved" OR status="remediating",1,0)
+| timechart span=1d avg(success) as "Success Rate"
+| eval "Success Rate"=round('Success Rate'*100,1)</query>
+          <earliest>-30d</earliest><latest>now</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.axisTitleY.text">%</option>
+        <option name="charting.seriesColors">["0x22c55e"]</option>
+      </chart>
+    </panel>
+  </row>
+</dashboard>
