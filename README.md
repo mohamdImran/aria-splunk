@@ -68,7 +68,7 @@ Most incident response tools use correlation or LLM pattern-matching. ARIA uses 
 
 ## Architecture
 
-![ARIA Architecture](architecture.png)
+![ARIA Architecture](architecture_diagram.png)
 
 ```
 ┌─────────────────── React Frontend (port 3000) ───────────────────────┐
@@ -109,7 +109,7 @@ Most incident response tools use correlation or LLM pattern-matching. ARIA uses 
 
 ```bash
 # 1. Clone and configure
-git clone https://github.com/your-org/aria
+git clone https://github.com/mohamdImran/aria-splunk
 cd aria
 cp .env.example .env
 # Edit .env — set SPLUNK_TOKEN and DEMO_MODE
